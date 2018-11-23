@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import matplotlib.pyplot as plt
+import common
 
 # general
 points = [0.27, 0.62, 0.89]
@@ -80,7 +81,8 @@ newton_lin_space = list(map(lambda p: newton_polynomial(interval_points, p, my_f
 plt.plot(lin_space, function_lin_space, label='функции')
 plt.plot(lin_space, lagrange_lin_space, label='лагранжа')
 plt.plot(lin_space, newton_lin_space, label='ньютона')
-plt.plot(points, calculated_values, label='точки', marker='X')
+common.renderDots(zip(points, calculated_values))
+
 
 plt.xlabel('x label')
 plt.ylabel('y label')
