@@ -25,7 +25,7 @@ def lagrange_polynomial(points, x):
     y3 = my_func(x3)
 
     return (x - x2) * (x - x3) * y1 / (x1 - x2) / (x1 - x3) + (x - x1) * (x - x3) * y2 / (x2 - x1) / (x2 - x3) + (
-                x - x1) * (x - x2) * y3 / (x3 - x1) / (x3 - x2)
+            x - x1) * (x - x2) * y3 / (x3 - x1) / (x3 - x2)
 
 
 # newton http://mathfaculty.fullerton.edu/mathews/n2003/NewtonPolyMod.html
@@ -48,7 +48,7 @@ def newton_polynomial(points, x, f):
     x2 = nps[2]
     x3 = nps[3]
     return f(x0) + seq2(x0, x1, f) * (x - x0) + seq3(x0, x1, x2, f) * (x - x0) * (x - x1) + seq4(x0, x1, x2, x3, f) * (
-                x - x0) * (x - x1) * (x - x2)
+            x - x0) * (x - x1) * (x - x2)
 
 
 # utils
@@ -80,7 +80,7 @@ newton_lin_space = list(map(lambda p: newton_polynomial(interval_points, p, my_f
 plt.plot(lin_space, function_lin_space, label='функции')
 plt.plot(lin_space, lagrange_lin_space, label='лагранжа')
 plt.plot(lin_space, newton_lin_space, label='ньютона')
-plt.plot(points, calculated_values, label='точки', marker = 'X')
+plt.plot(points, calculated_values, label='точки', marker='X')
 
 plt.xlabel('x label')
 plt.ylabel('y label')
