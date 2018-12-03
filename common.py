@@ -1,4 +1,8 @@
 import matplotlib.pyplot as plt
+import functools
+import operator
+
+foldl = lambda func, acc, xs: functools.reduce(func, xs, acc)
 
 def renderDots(dots):
     x_cords = []
