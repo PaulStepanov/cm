@@ -6,13 +6,17 @@ TOMAS_A = 1
 TOMAS_B = 4
 TOMAS_C = 1
 
-func = lambda x: x - np.log(x + 2)
-n = 5
+# http://www.machinelearning.ru/wiki/index.php?title=%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%BF%D0%BE%D0%BB%D1%8F%D1%86%D0%B8%D1%8F_%D0%BA%D1%83%D0%B1%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%BC%D0%B8_%D1%81%D0%BF%D0%BB%D0%B0%D0%B9%D0%BD%D0%B0%D0%BC%D0%B8
+
+
+func = lambda x: x - np.sqrt(np.log(x + 2))
+
 h = 0.2
 x0 = 0.0
 xn = 1
+n = 5
 x = []
-for i in np.arange(x0, ((n + 1) * xn / n) + h, h):
+for i in np.arange(x0, xn + h + h, h):
     x += [i]
 y = []
 for i in x:
