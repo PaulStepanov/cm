@@ -66,18 +66,13 @@ def init_thomas_algorithm(n, a, b, c, f):
 
 
 def find_nearest_point_index(points, point):
-    index_distance_tp_arr = []
+    touples = []
 
     for i in range(0, len(points)):
         p = points[i]
-        distance = np.abs(p - point)
+        touples += [(i,p)]
 
-        index_distance_tp_arr += [(i, distance)]
-
-    index_distance_tp_arr = sorted(index_distance_tp_arr, key=lambda x: x[1])
-
-    return index_distance_tp_arr[0][0]
-
+    return list(filter(lambda tp: point < tp[1], touples))[0][0]
 
 def get_spline_coefficients(y, h, n):
     def find_f(i):
