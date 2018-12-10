@@ -1,6 +1,8 @@
 import numpy as np
 import math
 import common as cmn
+import matplotlib.pyplot as plt
+
 
 TOMAS_A = 1
 TOMAS_B = 4
@@ -28,13 +30,13 @@ print("y", y)
 points = (x0 + 0.5 * h, 0.5 * x0 + 0.5 * xn, xn - 0.5 * h)
 
 
-def thomas_algorithm(a, b, c, f):
+def thomas_algorithm(a, c, b, f):
     def alpha(x, i):
-        new_val = (-c[i]) / (a[i - 1] * x[-1] + b[i])
+        new_val = (-b[i]) / (a[i - 1] * x[-1] + c[i])
         return x + [new_val]
 
     def beta(x, i):
-        new_val = (f[i] - a[i - 1] * x[-1]) / (a[i - 1] * alphas[i] + b[i])
+        new_val = (f[i] - a[i - 1] * x[-1]) / (a[i - 1] * alphas[i] + c[i])
         return x + [new_val]
 
     def find_xi(x, i):
@@ -42,15 +44,15 @@ def thomas_algorithm(a, b, c, f):
         return x + [new_val]
 
     n = len(a)
-    init_aplha = [0.0, -c[0] / b[0]]
+    init_aplha = [0.0, -b[0] / c[0]]
 
     alphas = cmn.foldl(alpha, init_aplha, range(1, n))
 
-    init_beta = [0.0, f[0] / b[0]]
+    init_beta = [0.0, f[0] / c[0]]
 
     betas = cmn.foldl(beta, init_beta, range(1, n))
 
-    xn = (f[n] - a[n - 1] * betas[n]) / (a[n - 1] * alphas[n] + b[n])
+    xn = (f[n] - a[n - 1] * betas[n]) / (a[n - 1] * alphas[n] + c[n])
 
     coefficients = list(reversed(cmn.foldl(find_xi, [xn], range(n - 1, -1, -1))))
 
@@ -122,7 +124,7 @@ def get_spline_coefficients_by_index(y, h, n, i):
 def get_interpolar_spline(xs, point):
     nearest_point_index = find_nearest_point_index(xs, point)
     coefficients = get_spline_coefficients_by_index(y, h, n, nearest_point_index)
-    print("x:", point, "nearest:", nearest_point_index, "c:", coefficients)
+    # print("x:", point, "nearest:", nearest_point_index, "c:", coefficients)
     spline = coefficients["a"] + coefficients["b"] * (point - xs[nearest_point_index]) + coefficients["c"] * math.pow(
         point - xs[nearest_point_index], 2) + \
              coefficients["d"] * math.pow(point - xs[nearest_point_index], 3)
@@ -130,5 +132,21 @@ def get_interpolar_spline(xs, point):
     return spline
 
 
+
+lin_space = np.linspace(0, 0.9, 1000)
+function_lin_space = list(map(lambda x: func(x), lin_space))
+plt.plot(lin_space, function_lin_space, label='функции')
+
 for point in points:
     print("in point:", point, "f(x):", func(point), " spline=", get_interpolar_spline(x[1:][:-1], point))
+
+space = list(map(lambda mx: get_interpolar_spline(x[1:][:-1], mx), lin_space))
+plt.plot(lin_space, space, label='сплайн:')
+plt.xlabel('x label')
+plt.ylabel('y label')
+
+plt.title("Simple Plot")
+
+plt.legend()
+
+plt.show()
