@@ -25,9 +25,27 @@ def lagrange_polynomial(points, x):
     y2 = my_func(x2)
     y3 = my_func(x3)
 
+
+
     return (x - x2) * (x - x3) * y1 / (x1 - x2) / (x1 - x3) + (x - x1) * (x - x3) * y2 / (x2 - x1) / (x2 - x3) + (
             x - x1) * (x - x2) * y3 / (x3 - x1) / (x3 - x2)
 
+
+def draw_lagrange_polynomial(points, x, nerest_x):
+    nearest_points = find_nearest_points(points, nerest_x)
+    x1 = nearest_points[0]
+    x2 = nearest_points[1]
+    x3 = nearest_points[2]
+    y1 = my_func(x1)
+    y2 = my_func(x2)
+    y3 = my_func(x3)
+
+    xs = [x1,x2,x3]
+    ys = [y1,y2,y3]
+    #common.renderDots(zip([x1,x2,x3], [y1,y2,y3]))
+
+    return (x - x2) * (x - x3) * y1 / (x1 - x2) / (x1 - x3) + (x - x1) * (x - x3) * y2 / (x2 - x1) / (x2 - x3) + (
+            x - x1) * (x - x2) * y3 / (x3 - x1) / (x3 - x2)
 
 # newton http://mathfaculty.fullerton.edu/mathews/n2003/NewtonPolyMod.html
 def seq2(x0, x1, f):
@@ -51,6 +69,14 @@ def newton_polynomial(points, x, f):
     return f(x0) + seq2(x0, x1, f) * (x - x0) + seq3(x0, x1, x2, f) * (x - x0) * (x - x1) + seq4(x0, x1, x2, x3, f) * (
             x - x0) * (x - x1) * (x - x2)
 
+def draw_newton_polynomial(points, x, f, ns):
+    nps = find_nearest_points(points, ns, 4)
+    x0 = nps[0]
+    x1 = nps[1]
+    x2 = nps[2]
+    x3 = nps[3]
+    return f(x0) + seq2(x0, x1, f) * (x - x0) + seq3(x0, x1, x2, f) * (x - x0) * (x - x1) + seq4(x0, x1, x2, x3, f) * (
+            x - x0) * (x - x1) * (x - x2)
 
 # utils
 def find_nearest_points(points, point, n=3):
@@ -76,11 +102,21 @@ print("точность ньютона", find_diff(calculated_values, newton_pol
 
 lin_space = np.linspace(0, 1, 1000)
 function_lin_space = list(map(lambda x: my_func(x), lin_space))
-lagrange_lin_space = list(map(lambda x: lagrange_polynomial(interval_points, x), lin_space))
-newton_lin_space = list(map(lambda p: newton_polynomial(interval_points, p, my_func), lin_space))
+lagrange_lin_space_x0 = list(map(lambda x: draw_lagrange_polynomial(interval_points, x, points[0]), lin_space))
+lagrange_lin_space_x1 = list(map(lambda x: draw_lagrange_polynomial(interval_points, x, points[1]), lin_space))
+lagrange_lin_space_x2 = list(map(lambda x: draw_lagrange_polynomial(interval_points, x, points[2]), lin_space))
+
+newton_lin_space_x0 = list(map(lambda p: draw_newton_polynomial(interval_points, p, my_func, points[0]), lin_space))
+newton_lin_space_x1 = list(map(lambda p: draw_newton_polynomial(interval_points, p, my_func, points[1]), lin_space))
+newton_lin_space_x2 = list(map(lambda p: draw_newton_polynomial(interval_points, p, my_func, points[2]), lin_space))
+
 plt.plot(lin_space, function_lin_space, label='функции')
-plt.plot(lin_space, lagrange_lin_space, label='лагранжа')
-plt.plot(lin_space, newton_lin_space, label='ньютона')
+#plt.plot(lin_space, lagrange_lin_space_x0, label='лагранжа:' + str(points[0]))
+plt.plot(lin_space, lagrange_lin_space_x1, label='лагранжа:'+ str(points[1]))
+#plt.plot(lin_space, lagrange_lin_space_x2, label='лагранжа:'+ str(points[2]))
+plt.plot(lin_space, newton_lin_space_x0, label='ньютона:' + str(points[0]))
+#plt.plot(lin_space, newton_lin_space_x1, label='ньютона:'+ str(points[1]))
+#plt.plot(lin_space, newton_lin_space_x2, label='ньютона:'+ str(points[2]))
 common.renderDots(zip(points, calculated_values))
 
 
