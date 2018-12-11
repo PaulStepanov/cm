@@ -87,7 +87,7 @@ def lagrange_polynomial_5(points, x, isPrint=False):
     y6 = my_func(x6)
 
     if isPrint:
-        print("lagrange_polynomial 5", "x1:", x1, "x2:", x2, "x3:", x3, "x4:", x4, "x5:", x5, "x6:", x6,"y1:", y1, "y2:", y2, "y3:" , y3, "y4:", y4, "y5:", y5)
+        print("lagrange_polynomial 5", "x1:", x1, "x2:", x2, "x3:", x3, "x4:", x4, "x5:", x5, "x6:", x6,"y1:", y1, "y2:", y2, "y3:" , y3, "y4:", y4, "y5:", y5, "y6:", y6)
 
     return (x-x2)*(x-x3)*(x-x4)*(x-x5)*(x-x6)*y1/(x1-x2)/(x1-x3)/(x1-x4)/(x1-x5)/(x1-x6) + (x-x1)*(x-x3)*(x-x4)*(x-x5)*(x-x6)*y2/(x2-x1)/(x2-x3)/(x2-x4)/(x2-x5)/(x2-x6) + (x-x1)*(x-x2)*(x-x4)*(x-x5)*(x-x6)*y3/(x3-x1)/(x3-x2)/(x3-x4)/(x3-x5)/(x3-x6) + (x-x1)*(x-x2)*(x-x3)*(x-x5)*(x-x6)*y4/(x4-x1)/(x4-x2)/(x4-x3)/(x4-x5)/(x4-x6) + (x-x1)*(x-x2)*(x-x3)*(x-x4)*(x-x6)*y5/(x5-x1)/(x5-x2)/(x5-x3)/(x5-x4)/(x5-x6) + (x-x1)*(x-x2)*(x-x3)*(x-x4)*(x-x5)*y6/(x6-x1)/(x6-x2)/(x6-x3)/(x6-x4)/(x6-x5)
 
