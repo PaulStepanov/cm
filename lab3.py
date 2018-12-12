@@ -3,6 +3,8 @@ import numpy as np
 import math
 import common as cmn
 
+# формулы  https://imgur.com/a/at6bzsL
+
 xs = [-3, -2, -1, 0, 1, 2, 3]
 ys = [2.6, -0.3, -2, -2.3, -1.5, 0.7, 3.2]
 h = 1
