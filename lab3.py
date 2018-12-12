@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 import numpy as np
-import math
-import common as cmn
 
 # формулы  https://imgur.com/a/at6bzsL
 
@@ -86,6 +84,7 @@ def least_square_cubic(xs, ys):
 
     print("Полученая кубическая функция", a, "*x^3 +", b, "*x^2 +", c, "*x+", d)
     return lambda x: a * x ** 3 + b * x ** 2 + c * x + d
+
 
 # https://www.desmos.com/calculator/4fcpeogamr
 [print("(", xs[i], ",", ys[i], ")") for i in range(n)]

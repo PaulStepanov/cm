@@ -4,7 +4,6 @@ import math
 import common as cmn
 import matplotlib.pyplot as plt
 
-
 TOMAS_A = 1
 TOMAS_B = 4
 TOMAS_C = 1
@@ -73,9 +72,10 @@ def find_nearest_point_index(points, point):
 
     for i in range(0, len(points)):
         p = points[i]
-        touples += [(i,p)]
+        touples += [(i, p)]
 
     return list(filter(lambda tp: point < tp[1], touples))[0][0]
+
 
 def get_spline_coefficients(y, h, n):
     def find_f(i):
@@ -131,7 +131,6 @@ def get_interpolar_spline(xs, point):
              coefficients["d"] * math.pow(point - xs[nearest_point_index], 3)
 
     return spline
-
 
 
 lin_space = np.linspace(0, 0.9, 1000)

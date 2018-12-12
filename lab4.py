@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 import numpy as np
-import math
-import common as cmn
 
 # http://codetown.ru/matlab/chislennoe-differencirovanie/
 
@@ -28,11 +26,11 @@ def function(x):
 
 
 def first_derivative(x):
-    return 2 * x - np.exp(x) * (1 + x) # 2 x - e^x (1 + x)
+    return 2 * x - np.exp(x) * (1 + x)  # 2 x - e^x (1 + x)
 
 
 def second_derivative(x):
-    return 2 - np.exp(x) * (2 + x) # 2 - e^x (2 + x)
+    return 2 - np.exp(x) * (2 + x)  # 2 - e^x (2 + x)
 
 
 def left(func, x_0, i, h):
