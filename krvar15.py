@@ -13,7 +13,8 @@ def my_func(x):
 
 interval_points = np.arange(0.0, 6.0, 1.0)
 calculated_values = list(map(my_func, points))
-
+# print(interval_points)
+# print(list(map(my_func, interval_points)))
 
 # lagrange http://mathworld.wolfram.com/LagrangeInterpolatingPolynomial.html
 def lagrange_polynomial_2(points, x, isPrint = False):

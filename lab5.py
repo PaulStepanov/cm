@@ -75,13 +75,13 @@ def trapeze_method(a, b, n):
     for i in range(1, n):
         sum += 2 * function(a + i * h)
 
-    print("function(a)", function(a))
-    print("sum", sum)
-    print("function(b)", function(b))
+    # print("function(a)", function(a))
+    # print("sum", sum)
+    # print("function(b)", function(b))
 
     return (h / 2) * (function(a) + sum + function(b))
 
-def gauss(self):
+def gauss(a, b):
     x = [-0.932469514,
          -0.661209386,
          -0.238619186,
@@ -94,17 +94,15 @@ def gauss(self):
          0.467913935,
          0.360761573,
          0.171324492]
-    a = self.a
-    b = self.b
 
     f_x = 0
     for i in range(6):
         t = (b - a) / 2 * x[i] + (b + a) / 2
-        f_x += c[i] * self.func(t)
+        f_x += c[i] * function(t)
     return (b - a) / 2 * f_x
 
-def newton(self, F):
-    return F(self.b) - F(self.a)
+def newton(a, b):
+    return F(b) - F(a)
 
 
 h = (b - a) / n
@@ -114,3 +112,6 @@ print("square_method_right", square_method_right(a, b, n))
 print("square_method_middle", square_method_middle(a, b, n))
 print("trapeze_method", trapeze_method(a, b, n))
 print("porabol_method", porabol_method(a, b, n))
+print("gauss_method", gauss(a, b))
+print("newton method", newton(a,b))
+
