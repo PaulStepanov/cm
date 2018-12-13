@@ -81,6 +81,7 @@ def trapeze_method(a, b, n):
 
     return (h / 2) * (function(a) + sum + function(b))
 
+# http://www.math.tsu.ru/sites/default/files/mmf2/e-resources/Dit_An.pdf
 def gauss(a, b):
     x = [-0.932469514,
          -0.661209386,
